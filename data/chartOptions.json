@@ -1,0 +1,82 @@
+{
+	"optionChartRecrutement": {
+		"backgroundColor": {
+			"fill": "transparent"
+		},
+		"title": "Taux de recrutement à 6 mois",
+		"titleTextStyle": {
+			"color": "#0D2E4C",
+			"fontName": "candara",
+			"fontSize": 14,
+			"bold": true
+		},
+		"bar": {
+			"groupWidth": "95%"
+		},
+		"legend": {
+			"position": "none"
+		},
+		"vAxes": {
+			"0": {
+				"format": "percent",
+				"minValue": 0.5
+			}
+		},
+				"tooltip": {
+			"trigger": "none"
+		},
+    "animation": {
+      "duration": 2000,
+      "startup": true,
+      "easing": "linear"
+    },
+    "vAxis": {
+        "ticks": [0.5,0.6,0.7,0.8,0.9,1.0]
+    }
+	},
+	"optionChartReussite": {
+		"backgroundColor": {
+			"fill": "transparent"
+		},
+		"title": "Taux de réussite aux examens",
+		"titleTextStyle": {
+			"color": "#0D2E4C",
+			"fontName": "candara",
+			"fontSize": 14,
+			"bold": true
+		},
+		"bar": {
+			"groupWidth": "95%"
+		},
+		"legend": {
+			"position": "bottom",
+			"textStyle": {
+				"fontName": "candara"
+			}
+		},
+		"vAxes": {
+			"0": {
+				"format": "percent",
+        "minValue": 0
+ 			}
+		},
+		"tooltip": {
+			"trigger": "none"
+		},
+		"isStacked": true,
+		"series": {
+			"0": {
+				"color": "#1E64A3"
+			},
+			"1": {
+				"color": "#0B9E8F"
+			}
+		},
+    "animation": {
+      "duration": 2000,
+      "startup": true,
+      "easing": "linear"
+    }
+	},
+	"couleurs1": ["#438DD0", "#0B9E8F", "#BCDEFD", "#0D2E4C", "#73B3EC", "#0B9E8F"]
+}
