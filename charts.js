@@ -1,5 +1,9 @@
-var datas, options, timer;
+var datas;
+var options;
+var timer;
+
 window.document.getElementById("block4").onmouseover = launch;
+
 function launch(e) {
   e.currentTarget.onmouseover = null;
 
@@ -8,8 +12,8 @@ function launch(e) {
   (function loadDataOptions (){
     var dossierData = getRootPath() + "Assets/data/";
     // Chargement des fichiers stats et options.
-    datas = getFileData(dossierData + "stats.json");
-    options = getFileData(dossierData + "chartOptions.json");
+    getFileData(dossierData + "stats.json", 'data');
+    getFileData(dossierData + "chartOptions.json", 'options');
     setResizeEvent();
   })();
 
@@ -26,9 +30,15 @@ function launch(e) {
   }
 
   // Démarrage
-  drawGraph();
+  
 
   //Fonctions ---------------------------------------------------------------------------------------------------------------------------------------
+  function draw() {
+     if (datas && options) {
+        drawGraph();
+     }
+  }
+  
   function drawGraph() {
       //Graphe 1
       // Initialisation des données et options.
@@ -77,7 +87,7 @@ function launch(e) {
   }
 
   // Fonction de chargement des fichiers.
-  function getFileData(pathToFile) {
+  function getFileData(pathToFile, ctxt) {
       var data;
       // Création d'un objet XMlHttRequest.
       var xmlHttp = new XMLHttpRequest();
@@ -85,16 +95,28 @@ function launch(e) {
       xmlHttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
               data = JSON.parse(this.responseText);
+              callback(data,ctxt);
           }
           else if (this.readyState == 4 && this.status == 404) {
               data = null;
           }
       }
       // Envoi de la requête.
-      xmlHttp.open("GET", pathToFile, false);
+      xmlHttp.open("GET", pathToFile, true);
       xmlHttp.send();
       return data;
   }
+  
+  function callback(dat,variable) {
+    if(variable == 'data') {
+      datas = dat;
+    }
+    else if(variable == 'options') {
+      options = dat;
+    }
+    draw();
+  }
+  
   // Fonction utilitaire de récupération de l'url relative.
   function getRootPath() {
       var rootPath = "..";
